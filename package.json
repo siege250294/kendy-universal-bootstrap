@@ -1,0 +1,27 @@
+{
+  "name": "kendy-universal-bootstrap",
+  "version": "1.0.0",
+  "description": "A Universal Starter Kit include Webpack 2, Express, React, Gulp tasks, and more ",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/siege250294/kendy-universal-bootstrap.git"
+  },
+  "keywords": [
+    "universal",
+    "react",
+    "redux",
+    "gulp",
+    "express",
+    "isomorphism"
+  ],
+  "author": "siege250294",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/siege250294/kendy-universal-bootstrap/issues"
+  },
+  "homepage": "https://github.com/siege250294/kendy-universal-bootstrap#readme"
+}
