@@ -1,6 +1,9 @@
+# Modules folder
 /node_modules/
-/dist/
 .DS_Store
+
+# Public folder
+/public/
 
 # Coverage directory used by tools like istanbul
 coverage
