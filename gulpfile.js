@@ -27,7 +27,7 @@ gulp.task('set-environment-development', () => {
 	})
 })
 
-gulp.task('build:client', ['clean:public', 'set-environment-production'], (cb) => {
+gulp.task('build:client', (cb) => {
 	const clientConfig = Object.create(require('./webpack/config.client'))
 	gutil.log('[is-development]', chalk.red(clientConfig.cache))
 	webpack(clientConfig, (err, stats) => {
