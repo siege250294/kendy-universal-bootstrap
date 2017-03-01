@@ -2,8 +2,8 @@
 /node_modules/
 .DS_Store
 
-# Public folder
-/public/
+# Build folder
+/build/
 
 # Coverage directory used by tools like istanbul
 coverage
