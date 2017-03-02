@@ -6,7 +6,7 @@ const env = process.env.NODE_ENV || 'development'
 const isDev = env !== 'production'
 
 function getEntry() {
-	let entry = []
+	const entry = []
 	if (isDev) {
 		entry.push(
 			'react-hot-loader/patch',
@@ -19,7 +19,7 @@ function getEntry() {
 }
 
 function getPlugins() {
-	let plugins = [
+	const plugins = [
 		new ExtractTextPlugin({
 			filename: '[name].css',
 			disable: isDev
@@ -50,9 +50,9 @@ function getPlugins() {
 					unused: true,
 					dead_code: true,
 				},
-				output: { 
-					screw_ie8: true, 
-					comments: false 
+				output: {
+					screw_ie8: true,
+					comments: false
 				},
 			})
 		)
@@ -90,7 +90,7 @@ module.exports = {
 	context: resolve(process.cwd(), 'src'),
 	output: {
 		filename: 'bundle.js',
-		path: resolve(process.cwd(), 'public'),
+		path: resolve(process.cwd(), 'build/public'),
 		publicPath: '/'
 	},
 	devtool: isDev ? 'eval' : 'source-map',
@@ -99,8 +99,8 @@ module.exports = {
 			{
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
-				use: [ 
-					{ 
+				use: [
+					{
 						loader: 'babel-loader',
 						options: getBabelOptions()
 					},

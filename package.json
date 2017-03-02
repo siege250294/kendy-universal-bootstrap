@@ -6,7 +6,7 @@
   "scripts": {
     "build:client": "gulp build:client",
     "build:server": "gulp build:server",
-    "start:dev": "NODE_ENV=development babel-node src/server",
+    "start:server": "nodemon --watch build build/server.js",
     "test": "mocha"
   },
   "repository": {
@@ -59,12 +59,15 @@
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "gulp": "^3.9.1",
     "gulp-env": "^0.4.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-nodemon": "^2.2.1",
     "gulp-util": "^3.0.8",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "postcss": "^5.2.15",
     "postcss-loader": "^1.3.1",
     "react-hot-loader": "^3.0.0-beta.6",
+    "run-sequence": "^1.2.2",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.5.0",

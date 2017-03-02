@@ -11,7 +11,7 @@ const bundle = webpack(Object.create(webpackClientConfig))
 app.use(webpackHotMiddleware(bundle))
 app.use(webpackDevMiddleware(bundle, {
 	hot: true,
-	contentBase: resolve(process.cwd(), 'dist'),
+	contentBase: resolve(process.cwd(), 'public'),
 	publicPath: webpackClientConfig.output.publicPath,
 	stats: {
 		colors: true
@@ -19,7 +19,7 @@ app.use(webpackDevMiddleware(bundle, {
 }))
 
 app.get('/', function(req, res, next) {
-	res.status(200).sendFile(resolve(__dirname, '../index.html'))
+	res.status(200).sendFile(resolve(process.cwd(), 'build/public/index.html'))
 })
 
 export default app
