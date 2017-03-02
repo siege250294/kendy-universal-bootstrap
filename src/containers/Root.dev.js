@@ -1,12 +1,22 @@
 import React, { Component, PropTypes } from 'react'
-import style from '../stylus/main.styl'
+import { Router } from 'react-router'
+import { Provider } from 'react-redux'
+import routes from '../routes'
 
-class Root extends Component {
+// key={Math.random()} obviously it changes all components states to their default states
+
+export default class Root extends Component {
+	static propTypes = {
+		store: PropTypes.object.isRequired,
+		history: PropTypes.object.isRequired
+	}
 	render() {
+		const { store, history } = this.props
 		return (
-			<div className={style.app}>Hello World! abc def ghk</div>
+			<Provider store={store}>
+				<Router key={Math.random()} history={history} routes={routes}>
+				</Router>
+			</Provider>
 		)
 	}
 }
-
-export default Root
