@@ -1,15 +1,19 @@
-import { PRODUCT_FILTER } from '../actions/filters'
+import { PRODUCT_FILTER_NAME, PRODUCT_FILTER_STOCKED } from '../actions/filters'
 import Immutable from 'immutable'
 
 const initialState = Immutable.Map({
-    product_filter: ''
+	productFilter: '',
+	categoryFilter: '',
+	productStocked: false
 })
 
 export default (filters = initialState, action) => {
-    switch (action.type) {
-    case PRODUCT_FILTER:
-        return filters.set('product_filter', action.product_filter)
-    default:
-        return filters
-    }
+	switch (action.type) {
+	case PRODUCT_FILTER_NAME:
+		return filters.set('productFilter', action.productFilter)
+	case PRODUCT_FILTER_STOCKED:
+		return filters.set('productStocked', action.productStocked)
+	default:
+		return filters
+	}
 }

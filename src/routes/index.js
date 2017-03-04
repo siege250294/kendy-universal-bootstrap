@@ -3,5 +3,5 @@ import { Route, createRoutes } from 'react-router'
 import App from '../components/App'
 
 export default createRoutes([
-    <Route path="/" component={App}/>
+	<Route path="/" component={App}/>
 ])

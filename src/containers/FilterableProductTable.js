@@ -1,20 +1,26 @@
 import { connect } from 'react-redux'
-import ProductTable from '../components/ProductTable'
-import {filterProduct} from '../actions/filters'
+import ProductTableAndFilter from '../components/ProductTableAndFilter'
+import {filterProductName, filterProductStocked} from '../actions/filters'
 
 const mapStateToProps = (state) => {
-    const filter = state.filters.get('product_filter')
-    const products = state.products.filter(p => p.name.indexOf(filter) !== -1)
-    return {
-        products: products,
-        filter: filter
-    }
+	const filter = state.filters.get('productFilter')
+	const stocked = state.filters.get('productStocked')
+	const products = state.products.filter(p => p.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1 && (!stocked || (stocked && p.stocked)))
+	return {
+		products: products,
+		productFilter: filter,
+		productStocked: stocked,
+		categoryFilter: state.filters.get('categoryFilter')
+	}
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    onProductFilterChange: (filter) => {
-        dispatch(filterProduct(filter))
-    }
+	handleProductFilterChange: (e) => {
+		dispatch(filterProductName(e.target.value))
+	},
+	handleStockedChange: (e) => {
+		dispatch(filterProductStocked(e.target.checked))
+	}
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductTable)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductTableAndFilter)
