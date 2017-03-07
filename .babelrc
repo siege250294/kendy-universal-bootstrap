@@ -1,6 +1,7 @@
 {
 	"presets": [
-		["latest", { "module": false } ]
+		["latest", { "module": false } ],
+		"react"
 	],
 	"plugins": [
 		"transform-object-rest-spread"

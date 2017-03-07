@@ -6,8 +6,9 @@ import rootReducer from '../reducers'
 // try to watch the files for hot module replacement if needed
 export default (initialState) => {
 	/* eslint-disable no-underscore-danger */
-	const store = createStore(rootReducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+	const store = createStore(rootReducer, initialState)
 	/* eslint-enable no-underscore-danger */
+	// window ? (window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) : null
 
 	if (module.hot) {
 		module.hot.accept('../reducers', () => {
