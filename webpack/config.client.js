@@ -11,7 +11,7 @@ function getEntry() {
 		entry.push(
 			'react-hot-loader/patch',
 			'webpack/hot/dev-server',
-			'webpack-hot-middleware/client'
+			'webpack-hot-middleware/client?reload=true&noInfo=true'
 		)
 	}
 	entry.push('./client/index.js')
