@@ -8,6 +8,7 @@ import { resolve } from 'path'
 const app = express()
 const bundle = webpack(Object.create(webpackClientConfig))
 
+// Using webpack-dev-middleware and webpack-hot-middlewere for serving bundled files
 app.use(webpackHotMiddleware(bundle))
 app.use(webpackDevMiddleware(bundle, {
 	noInfo: true,
@@ -17,6 +18,7 @@ app.use(webpackDevMiddleware(bundle, {
 	}
 }))
 
+// Then using the index.html for all routes - client-side render
 app.get('/', function(req, res, next) {
 	res.status(200).sendFile(resolve(__dirname, '../index.html'))
 })

@@ -6,6 +6,7 @@ import Root from '../containers/Root'
 import configureStore from '../store/configureStore'
 import Immutable from 'immutable'
 
+// Configurate store by using an initial state
 const store = configureStore({
 	products: Immutable.List([
 		{category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
@@ -17,6 +18,8 @@ const store = configureStore({
 	])
 })
 
+
+// Render DOM by replacing the 'app' element by our AppContainer
 const renderDOM = (RootComponent) => {
 	render((
 		<AppContainer>

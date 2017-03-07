@@ -1,6 +1,7 @@
 import { PRODUCT_FILTER_NAME, PRODUCT_FILTER_STOCKED } from '../actions/filters'
 import Immutable from 'immutable'
 
+// Setting up a initial state by using Immutable Map instance
 const initialState = Immutable.Map({
 	productFilter: '',
 	categoryFilter: '',
