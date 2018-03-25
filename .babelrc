@@ -1,9 +1,26 @@
 {
 	"presets": [
-		["latest", { "module": false } ],
+		["env", { "module": false } ],
 		"react"
 	],
-	"plugins": [
-		"transform-object-rest-spread"
-	]
+	"env": {
+		"development": {
+			"plugins": [
+				"transform-object-rest-spread"
+			]
+		},
+		"production": {
+			"plugins": [
+				"transform-object-rest-spread"
+			]
+		},
+		"test": {
+			"presets": [
+				["env", "react"]
+			],
+			"plugins": [
+				"transform-object-rest-spread"
+			]
+		}
+	}
 }

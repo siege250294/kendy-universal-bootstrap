@@ -1,8 +1,8 @@
-let server
+let server;
 if (process.env.NODE_ENV === 'production') {
-	server = require('./server').default
+    server = require('./server').default;
 } else {
-	server = require('./dev-server').default
+    server = require('./dev-server').default;
 }
 
-server.listen(process.env.PORT || 8080)
+server.listen(process.env.PORT || 8080);

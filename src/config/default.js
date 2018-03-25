@@ -8,7 +8,8 @@ module.exports = {
         meta: [
             {
                 name: 'description',
-                content: 'One of the best react universal starter boilerplates in the world.',
+                content:
+                    'One of the best react universal starter boilerplates in the world.',
             },
         ],
     },

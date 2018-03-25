@@ -1,0 +1,10 @@
+{
+  "exec": "babel-node src/server/index.js",
+  "verbose": true,
+  "watch": ["src/server", "webpack"],
+  "env": {
+    "NODE_ENV": "development",
+    "BABEL_ENV": "development"
+  },
+  "ext": "js jsx json"
+}

@@ -1,4 +1,4 @@
-const defaultConfig = require('./default')
-const prodConfig = Object.create(defaultConfig)
+const defaultConfig = require('./default');
+const prodConfig = Object.create(defaultConfig);
 
-module.exports = prodConfig
+module.exports = prodConfig;
