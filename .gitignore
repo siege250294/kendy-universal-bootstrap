@@ -8,8 +8,9 @@
 # Coverage directory used by tools like istanbul
 coverage
 
-# Debug log from npm
-npm-debug.log
+# Debug log from npm or yarn
+*.log
+logs
 
 # IntelliJ IDE ignore
 .idea
