@@ -1,1 +1,4 @@
-module.exports = __DEV__ ? require('./Root.dev') : require('./Root.prod');
+module.exports =
+    process.env.NODE_ENV !== 'production'
+        ? require('./Root.dev')
+        : require('./Root.prod');

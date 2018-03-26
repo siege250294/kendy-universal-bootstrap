@@ -1,10 +1,11 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const AssetsWebpackPlugin = require('assets-webpack-plugin');
 
 // Make NODE_ENV to development by default
 const env = process.env.NODE_ENV || 'development';
-const isDev = env === 'development';
+const isDev = env !== 'production';
 
 function getEntry() {
     const entry = {};
@@ -16,9 +17,7 @@ function getEntry() {
             './client.js',
         ];
     } else {
-        entry.app = {
-            app: './client.js',
-        };
+        entry.app = './client.js';
     }
     entry.vendors = [
         'react',
@@ -70,6 +69,9 @@ function getPlugins() {
                     screw_ie8: true,
                     comments: false,
                 },
+            }),
+            new AssetsWebpackPlugin({
+                path: resolve(__dirname, '../build'),
             })
         );
     }

@@ -1,59 +1,21 @@
-import express from 'express';
-import { resolve } from 'path';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { match, RouterContext } from 'react-router';
-import routes from '../routes';
-import Root from './';
-import { Provider } from 'react-redux';
-import configureStore from '../store/configureStore';
-import Immutable from 'immutable';
+const React = require('react');
+const express = require('express');
+const app = require('./app');
+const fs = require('fs');
+const { resolve } = require('path');
+const { renderToString } = require('react-dom/server');
+const { match, RouterContext } = require('react-router');
+const routes = require('../routes').default;
+const { Provider } = require('react-redux');
+const configureStore = require('../store/configureStore').default;
 
-const app = express();
+// Read assets list
+const assets = JSON.parse(fs.readFileSync('./webpack-assets.json'));
 
 // Configurate store by using an initial state
-const store = configureStore({
-    products: Immutable.List([
-        {
-            category: 'Sporting Goods',
-            price: '$49.99',
-            stocked: true,
-            name: 'Football',
-        },
-        {
-            category: 'Sporting Goods',
-            price: '$9.99',
-            stocked: true,
-            name: 'Baseball',
-        },
-        {
-            category: 'Sporting Goods',
-            price: '$29.99',
-            stocked: false,
-            name: 'Basketball',
-        },
-        {
-            category: 'Electronics',
-            price: '$99.99',
-            stocked: true,
-            name: 'iPod Touch',
-        },
-        {
-            category: 'Electronics',
-            price: '$399.99',
-            stocked: false,
-            name: 'iPhone 5',
-        },
-        {
-            category: 'Electronics',
-            price: '$199.99',
-            stocked: true,
-            name: 'Nexus 7',
-        },
-    ]),
-});
+const store = configureStore();
 
-app.use('/', express.static(resolve(process.cwd(), 'build/public')));
+app.use('/assets', express.static(resolve(process.cwd(), 'build/assets')));
 
 app.get('*', function(req, res) {
     match({ routes: routes, location: req.url }, (err, redirect, props) => {
@@ -73,8 +35,9 @@ function renderPage(appHtml) {
 		<meta charset="utf-8"/>
 		<title>Kendy React Universal Starter Kit</title>
 		<div id="app">${appHtml}</div>
-		<script src="/bundle.js"></script>
+		<script src="${assets.vendors.js}"></script>
+		<script src="${assets.app.js}"></script>
 	`;
 }
 
-export default app;
+module.exports = app;

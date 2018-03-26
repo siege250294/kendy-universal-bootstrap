@@ -1,3 +1,4 @@
-module.exports = __DEV__
-    ? require('./configureStore.dev')
-    : require('./configureStore.prod');
+module.exports =
+    process.env.NODE_ENV !== 'production'
+        ? require('./configureStore.dev')
+        : require('./configureStore.prod');

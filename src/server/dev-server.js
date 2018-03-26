@@ -1,11 +1,10 @@
-const express = require('express');
+const app = require('./app');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackClientConfig = require('../../webpack/config.client');
 const { resolve } = require('path');
 
-const app = express();
 const bundle = webpack(Object.create(webpackClientConfig));
 
 // Using webpack-dev-middleware and webpack-hot-middlewere for serving bundled files
