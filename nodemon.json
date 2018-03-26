@@ -1,5 +1,5 @@
 {
-  "exec": "babel-node src/server/index.js",
+  "exec": "node src/server/index.js",
   "verbose": true,
   "watch": ["src/server", "webpack"],
   "env": {

@@ -1,9 +1,9 @@
-import express from 'express';
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackClientConfig from '../../webpack/config.client';
-import { resolve } from 'path';
+const express = require('express');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackClientConfig = require('../../webpack/config.client');
+const { resolve } = require('path');
 
 const app = express();
 const bundle = webpack(Object.create(webpackClientConfig));
@@ -25,4 +25,4 @@ app.get('*', function(req, res) {
     res.sendFile(resolve(__dirname, '../index.html'));
 });
 
-export default app;
+module.exports = app;
