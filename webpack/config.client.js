@@ -80,7 +80,7 @@ function getPlugins() {
 }
 
 function getBabelOptions() {
-    const plugins = ['transform-object-rest-spread'];
+    const plugins = ['transform-object-rest-spread', 'dynamic-import-webpack'];
     const presets = [['env', { modules: false }], 'react'];
     if (isDev) {
         plugins.push('react-hot-loader/babel');

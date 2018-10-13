@@ -6,12 +6,14 @@
 	"env": {
 		"development": {
 			"plugins": [
-				"transform-object-rest-spread"
+				"transform-object-rest-spread",
+				"dynamic-import-webpack"
 			]
 		},
 		"production": {
 			"plugins": [
-				"transform-object-rest-spread"
+				"transform-object-rest-spread",
+				"dynamic-import-webpack"
 			]
 		},
 		"test": {
@@ -19,7 +21,8 @@
 				["env", "react"]
 			],
 			"plugins": [
-				"transform-object-rest-spread"
+				"transform-object-rest-spread",
+				"dynamic-import-webpack"
 			]
 		}
 	}

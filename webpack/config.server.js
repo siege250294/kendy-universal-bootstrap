@@ -28,7 +28,31 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: ['babel-loader', 'eslint-loader'],
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: false,
+                            presets: [
+                                [
+                                    'env',
+                                    {
+                                        targets: {
+                                            node: 'current',
+                                        },
+                                        useBuiltIns: 'usage',
+                                    },
+                                ],
+                                'react',
+                            ],
+                            plugins: [
+                                'transform-object-rest-spread',
+                                'dynamic-import-webpack',
+                            ],
+                        },
+                    },
+                    'eslint-loader',
+                ],
             },
             {
                 test: /\.styl$/,
@@ -63,6 +87,7 @@ module.exports = {
     plugins: [
         new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
         new webpack.DefinePlugin({
+            // Only build server for production
             'process.env.NODE_ENV': JSON.stringify('production'),
             __DEV__: false,
         }),
@@ -72,7 +97,7 @@ module.exports = {
         global: false,
         process: false,
         Buffer: false,
-        __filename: true,
-        __dirname: true,
+        __filename: false,
+        __dirname: false,
     },
 };
