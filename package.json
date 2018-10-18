@@ -1,24 +1,24 @@
 {
-  "name": "kendy-universal-bootstrap",
+  "name": "babel-universal-bootstrap",
   "version": "1.0.0",
-  "description": "A Universal Starter Kit include Webpack 2, Express, React, Gulp tasks, and more ",
+  "description": "A Universal Starter Kit include Webpack 2, Express, React, and more ",
   "main": "index.js",
   "engines": {
-    "node": "^8.10.0"
+    "node": ">=8.10.0"
   },
   "scripts": {
-    "build:client": "cross-env NODE_ENV=production webpack --config webpack/config.client.js",
-    "build:server": "cross-env NODE_ENV=production webpack --config webpack/config.server.js",
+    "build:client": "cross-env NODE_ENV=production webpack --config internals/webpack/config.client.js",
+    "build:server": "cross-env NODE_ENV=production webpack --config internals/webpack/config.server.js",
     "build": "npm run build:client && npm run build:server",
     "dev": "cross-env NODE_ENV=development nodemon",
     "start": "cross-env NODE_ENV=production node build/server.js",
-    "test:client": "jest --setupTestFrameworkScriptFile=\"<rootDir>/setupTests.client.js\"",
-    "test:server": "jest --testEnvironment=node --testPathIgnorePatterns=\"(.*)\\.test\\.js\" --setupTestFrameworkScriptFile=\"<rootDir>/setupTests.server.js\"",
+    "test:client": "jest --setupTestFrameworkScriptFile=\"<rootDir>/internals/jest/setupTests.client.js\" --testPathIgnorePatterns=\"(.*)\\.spec\\.js\"",
+    "test:server": "npm run build && jest --testEnvironment=node --testPathIgnorePatterns=\"(.*)\\.test\\.js\" --setupTestFrameworkScriptFile=\"<rootDir>/internals/jest/setupTests.server.js\" --detectOpenHandles --forceExit",
     "lint": "eslint --ext .js --ext .jsx --fix ./src"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/siege250294/kendy-universal-bootstrap.git"
+    "url": "git+ssh://git@github.com/nhanhoangtrong/babel-universal-bootstrap.git"
   },
   "keywords": ["universal", "react", "redux", "gulp", "express", "isomorphism"],
   "author": "siege250294",

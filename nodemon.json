@@ -1,7 +1,7 @@
 {
   "exec": "node src/server/index.js",
   "verbose": true,
-  "watch": ["src/server", "webpack"],
+  "watch": ["src/server", "internals/webpack"],
   "env": {
     "NODE_ENV": "development",
     "BABEL_ENV": "development"
