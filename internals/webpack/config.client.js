@@ -71,7 +71,7 @@ function getPlugins() {
                 },
             }),
             new AssetsWebpackPlugin({
-                path: resolve(__dirname, '../build'),
+                path: resolve(__dirname, '../../build'),
             })
         );
     }
