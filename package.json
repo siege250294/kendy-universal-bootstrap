@@ -1,7 +1,7 @@
 {
   "name": "babel-universal-bootstrap",
   "version": "1.0.0",
-  "description": "A Universal Starter Kit include Webpack 2, Express, React, and more ",
+  "description": "A Universal Starter Kit include Webpack 3, Express, React, and more ",
   "main": "index.js",
   "engines": {
     "node": ">=8.10.0"
@@ -14,6 +14,7 @@
     "start": "cross-env NODE_ENV=production node build/server.js",
     "test:client": "jest --setupTestFrameworkScriptFile=\"<rootDir>/internals/jest/setupTests.client.js\" --testPathIgnorePatterns=\"(.*)\\.spec\\.js\"",
     "test:server": "npm run build && jest --testEnvironment=node --testPathIgnorePatterns=\"(.*)\\.test\\.js\" --setupTestFrameworkScriptFile=\"<rootDir>/internals/jest/setupTests.server.js\" --detectOpenHandles --forceExit",
+    "test": "npm run test:client && npm run test:server",
     "lint": "eslint --ext .js --ext .jsx --fix ./src"
   },
   "repository": {
@@ -24,16 +25,19 @@
     "universal",
     "react",
     "redux",
-    "gulp",
     "express",
-    "isomorphism"
+    "isomorphism",
+    "jest",
+    "supertest",
+    "ssr",
+    "express"
   ],
-  "author": "siege250294",
+  "author": "nhanhoangtrong",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/siege250294/kendy-universal-bootstrap/issues"
+    "url": "https://github.com/nhanhoangtrong/babel-universal-bootstrap/issues"
   },
-  "homepage": "https://github.com/siege250294/kendy-universal-bootstrap#readme",
+  "homepage": "https://github.com/nhanhoangtrong/babel-universal-bootstrap#readme",
   "dependencies": {
     "body-parser": "^1.16.1",
     "dotenv": "^6.0.0",
@@ -65,6 +69,7 @@
     "chalk": "^2.3.0",
     "cross-env": "^5.1.1",
     "css-loader": "^1.0.0",
+    "debug": "^4.1.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^5.5.0",
