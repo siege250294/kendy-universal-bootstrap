@@ -1,29 +1,8 @@
 {
-	"presets": [
-		["env", { "module": false } ],
-		"react"
-	],
-	"env": {
-		"development": {
-			"plugins": [
-				"transform-object-rest-spread",
-				"dynamic-import-webpack"
-			]
-		},
-		"production": {
-			"plugins": [
-				"transform-object-rest-spread",
-				"dynamic-import-webpack"
-			]
-		},
-		"test": {
-			"presets": [
-				["env", "react"]
-			],
-			"plugins": [
-				"transform-object-rest-spread",
-				"dynamic-import-webpack"
-			]
-		}
-	}
+  "env": {
+    "test": {
+      "presets": ["env", "react"],
+      "plugins": ["transform-object-rest-spread", "dynamic-import-webpack"]
+    }
+  }
 }

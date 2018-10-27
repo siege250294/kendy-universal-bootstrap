@@ -59,8 +59,10 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.23.1",
     "babel-eslint": "^8.0.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^7.1.0",
     "babel-plugin-dynamic-import-webpack": "^1.0.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.23.0",
@@ -95,6 +97,7 @@
     "webpack-node-externals": "^1.5.4"
   },
   "jest": {
+    "verbose": true,
     "moduleFileExtensions": [
       "js",
       "jsx"
@@ -107,6 +110,9 @@
       ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/__mocks__/styleMock.js",
       ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "@app(.*)$": "<rootDir>/src$1"
+    },
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
     }
   }
 }

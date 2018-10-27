@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
+const getBabelOptions = require('../utils/getBabelOptions');
 
 module.exports = {
     name: 'server',
@@ -30,25 +31,10 @@ module.exports = {
                 use: [
                     {
                         loader: 'babel-loader',
-                        options: {
-                            babelrc: false,
-                            presets: [
-                                [
-                                    'env',
-                                    {
-                                        targets: {
-                                            node: 'current',
-                                        },
-                                        useBuiltIns: 'usage',
-                                    },
-                                ],
-                                'react',
-                            ],
-                            plugins: [
-                                'transform-object-rest-spread',
-                                'dynamic-import-webpack',
-                            ],
-                        },
+                        options: getBabelOptions({
+                            env: process.env.NODE_ENV,
+                            target: 'node',
+                        }),
                     },
                     'eslint-loader',
                 ],

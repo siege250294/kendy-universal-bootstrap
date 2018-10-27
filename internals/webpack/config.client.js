@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsWebpackPlugin = require('assets-webpack-plugin');
 
+const getBabelOptions = require('../utils/getBabelOptions');
+
 // Make NODE_ENV to development by default
 const env = process.env.NODE_ENV || 'development';
 const isDev = env !== 'production';
@@ -77,20 +79,6 @@ function getPlugins() {
     }
 
     return plugins;
-}
-
-function getBabelOptions() {
-    const plugins = ['transform-object-rest-spread', 'dynamic-import-webpack'];
-    const presets = [['env', { modules: false }], 'react'];
-    if (isDev) {
-        plugins.push('react-hot-loader/babel');
-    }
-    return {
-        cacheDirectory: isDev,
-        babelrc: false,
-        presets,
-        plugins,
-    };
 }
 
 module.exports = {
