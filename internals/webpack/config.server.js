@@ -6,6 +6,7 @@ const getBabelOptions = require('../utils/getBabelOptions');
 module.exports = {
     name: 'server',
     target: 'node',
+    mode: 'production',
     externals: [
         nodeExternals({
             // Load non-javascript files with extensions, presumably via loaders

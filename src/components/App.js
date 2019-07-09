@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, IndexLink } from 'react-router';
 
+import styles from './App.styl';
+
 const App = (props) => (
-    <div>
+    <div className={styles.app}>
         <ul>
             <li>
                 <IndexLink to="/">Index</IndexLink>

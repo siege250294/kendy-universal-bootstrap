@@ -4,7 +4,6 @@ import { AppContainer } from 'react-hot-loader';
 import { browserHistory } from 'react-router';
 import Root from './components/Root/Root';
 import configureStore from './store/configureStore';
-import Immutable from 'immutable';
 
 // Configurate store by using an initial state
 const store = configureStore();

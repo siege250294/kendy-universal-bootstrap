@@ -1,3 +1,5 @@
+import htmlTemplate from '../template.ejs';
+
 const React = require('react');
 const express = require('express');
 const app = require('./app');
@@ -9,8 +11,6 @@ const { match, RouterContext } = require('react-router');
 const routes = require('../routes').default;
 const { Provider } = require('react-redux');
 const configureStore = require('../store/configureStore').default;
-
-const htmlTemplate = require('../index.ejs');
 
 // Compile template for faster render
 const compiledTemplate = require('ejs').compile(htmlTemplate, { async: true });
@@ -29,14 +29,13 @@ app.get('*', function(req, res) {
     match({ routes: routes, location: req.url }, (err, redirect, props) => {
         if (err) {
             return res.status(500).send(err.message);
-
         }
-        
+
         if (redirect) {
             return res.redirect(302, redirect.pathname + redirect.search);
         }
-        
-        if (props) {            
+
+        if (props) {
             const htmlApp = renderToString(
                 <Provider store={store}>
                     <RouterContext {...props} />
@@ -48,12 +47,13 @@ app.get('*', function(req, res) {
                 jsApp: assets.app.js,
                 cssApp: assets.app.css,
                 htmlApp,
-            }).then(data => {
-                res.send(data);
-            }).catch(_err => {
-                res.status(500).send('Render error');
-            });
-
+            })
+                .then((data) => {
+                    res.send(data);
+                })
+                .catch(() => {
+                    res.status(500).send('Render error');
+                });
         } else {
             res.status(404).send('Not Found');
         }

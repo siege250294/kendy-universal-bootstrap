@@ -1,6 +1,6 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const AssetsWebpackPlugin = require('assets-webpack-plugin');
 
 const getBabelOptions = require('../utils/getBabelOptions');
@@ -14,7 +14,6 @@ function getEntry() {
     if (isDev) {
         entry.app = [
             'react-hot-loader/patch',
-            'webpack/hot/dev-server',
             'webpack-hot-middleware/client?reload=true&noInfo=true',
             './client.js',
         ];
@@ -34,20 +33,11 @@ function getEntry() {
 
 function getPlugins() {
     const plugins = [
-        new ExtractTextPlugin({
-            filename: '[name].css',
-            disable: isDev,
-        }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(env),
             __CLIENT__: true,
             __SERVER__: false,
             __DEV__: isDev,
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            filename: '[name].bundle.js',
-            name: 'vendors',
-            minChunks: Infinity,
         }),
     ];
     if (isDev) {
@@ -57,20 +47,9 @@ function getPlugins() {
         );
     } else {
         plugins.push(
-            new webpack.optimize.UglifyJsPlugin({
-                sourceMap: true,
-                beautify: false,
-                mangle: { screw_ie8: true },
-                compress: {
-                    screw_ie8: true, // React doesn't support IE8
-                    warnings: false,
-                    unused: true,
-                    dead_code: true,
-                },
-                output: {
-                    screw_ie8: true,
-                    comments: false,
-                },
+            new MiniCSSExtractPlugin({
+                filename: '[name].css',
+                chunkFilename: '[id].css',
             }),
             new AssetsWebpackPlugin({
                 path: resolve(__dirname, '../../build'),
@@ -82,6 +61,7 @@ function getPlugins() {
 }
 
 module.exports = {
+    mode: isDev ? 'development' : 'production',
     name: 'client',
     target: 'web',
     cache: isDev,
@@ -114,22 +94,27 @@ module.exports = {
             },
             {
                 test: /\.styl$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: isDev,
-                                modules: true,
-                                importLoaders: 1,
-                                localIdentName: '[local]_[name]',
-                                minimize: !isDev,
-                            },
+                use: [
+                    isDev
+                        ? 'style-loader'
+                        : {
+                              loader: MiniCSSExtractPlugin.loader,
+                              options: {
+                                  hmr: isDev,
+                              },
+                          },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: isDev,
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName: '[local]_[name]',
+                            minimize: !isDev,
                         },
-                        'stylus-loader',
-                    ],
-                }),
+                    },
+                    'stylus-loader',
+                ],
             },
         ],
     },
