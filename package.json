@@ -90,7 +90,7 @@
     "raw-loader": "^3.0.0",
     "react-hot-loader": "^4.3.5",
     "style-loader": "^0.23.0",
-    "stylus": "^0.54.5",
+    "stylus": "^0.54.8",
     "stylus-loader": "^3.0.0",
     "supertest": "^4.0.2",
     "webpack": "^4.35.3",
